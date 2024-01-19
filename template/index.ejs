@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        text-align: center;
+        font-family: monospace;
+        row-gap: 10px;
+        max-width: 400px;
+        margin: 20px auto;
+      }
+      .grid-item-header-1 {
+        grid-column: 1;
+      }
+      .grid-item-header-2 {
+        grid-column: 2;
+      }
+      .grid-item-header-3 {
+        grid-column: 3;
+      }
+      .grid-item-title {
+        grid-column: 1/4;
+      }
+      .grid-item-data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid-container">
+      <div class="grid-item-header-1">1 Day</div>
+      <div class="grid-item-header-2">5 Day</div>
+      <div class="grid-item-header-3">10 Day</div>
+      <div class="grid-item-title">Buy</div><% Object.values(data).forEach(function(dayData) { %>
+        <div class="grid-item-data">
+        <% if (dayData.length === 0) return; dayData[0].forEach(function(data){ %><span><%= data %></span><% }) %>
+        </div><% }) %>
+      <div class="grid-item-title">Sell</div><% Object.values(data).forEach(function(dayData) { %>
+        <div class="grid-item-data">
+        <% if (dayData.length === 0) return; dayData[1].forEach(function(data){ %><span><%= data %></span><% }) %>
+        </div><% }) %>
+  </body>
+</html>
