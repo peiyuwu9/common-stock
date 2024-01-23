@@ -34,7 +34,8 @@ server.get("/", (req, reply) => {
   reply.sendFile("index.html");
 });
 
-export const dailyJob = onSchedule("every day 13:00", generateIndex);
+// export const dailyJob = onSchedule("every day 13:00", generateIndex);
+export const dailyJob = onSchedule("* * * * *", generateIndex);
 
 export const app = onRequest((req, res) => {
   server.ready((err) => {
