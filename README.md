@@ -1,5 +1,5 @@
-# Stock Scrapper
-An application to scrape stock data.
+# Common Stock
+An application to scrape stock data and organize them as common stock list.
 
 ## Motivation
 Need data for trading purpose.
@@ -7,7 +7,7 @@ Need data for trading purpose.
 ## Technologies used and why
 **HTML** and **CSS** are used to build browser content.  
 **EJS** is used to interprete html files.  
-**Javascript** is used to build user server/sql connection initialization, routes setup, request/response handle and read/write sql database.  
+**Javascript** is used to fetch data and serve static file.  
 **Node.js** is an environment to execute javascript in terminal.
 
 ## Deploy
