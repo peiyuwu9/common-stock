@@ -12,7 +12,8 @@
         font-family: monospace;
         row-gap: 10px;
         max-width: 400px;
-        margin: 20px auto;
+        margin: 40px auto;
+        position: relative;
       }
       .grid-item-header-1 {
         grid-column: 1;
@@ -32,6 +33,11 @@
         align-items: center;
         gap: 5px;
       }
+      .date-label {
+        position: absolute;
+        top: -30px;
+        right: 25px;
+      }
     </style>
   </head>
   <body>
@@ -39,13 +45,15 @@
       <div class="grid-item-header-1">1 Day</div>
       <div class="grid-item-header-2">5 Day</div>
       <div class="grid-item-header-3">10 Day</div>
-      <div class="grid-item-title">Buy</div><% Object.values(data).forEach(function(dayData) { %>
+      <div class="grid-item-title">Buy</div><% Object.values(data.dayData).forEach(function(dayData) { %>
         <div class="grid-item-data">
         <% if (dayData.length === 0) return; dayData[0].forEach(function(data){ %><span><%= data %></span><% }) %>
         </div><% }) %>
-      <div class="grid-item-title">Sell</div><% Object.values(data).forEach(function(dayData) { %>
+      <div class="grid-item-title">Sell</div><% Object.values(data.dayData).forEach(function(dayData) { %>
         <div class="grid-item-data">
         <% if (dayData.length === 0) return; dayData[1].forEach(function(data){ %><span><%= data %></span><% }) %>
         </div><% }) %>
+      <span class="date-label"><%= data.date %></span>
+    </div>
   </body>
 </html>

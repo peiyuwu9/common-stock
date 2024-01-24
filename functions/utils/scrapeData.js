@@ -21,7 +21,10 @@ const tenDayUrls = [
   "https://fubon-ebrokerdj.fbs.com.tw/z/zg/zgk.djhtm?A=F&B=0&C=10",
 ];
 
+let date = "";
+
 async function scrapingData(urls) {
+  // decode data from website
   const decoder = new TextDecoder("Big5");
   const lists = await Promise.all(
     urls.map(async (url) => {
@@ -36,6 +39,9 @@ async function scrapingData(urls) {
         const $ = cheerio.load(text);
         const list = [];
         $("tbody .t3t1").each((_idx, el) => list.push($(el).text()));
+
+        if (!date) date = $("tbody .t11").text();
+
         return list;
       } catch (err) {
         error(err);
@@ -104,7 +110,7 @@ async function scrapeData() {
     error("Scrapping data failed!");
     return {};
   }
-  return { oneDayData, fiveDayData, tenDayData };
+  return { date, dayData: { oneDayData, fiveDayData, tenDayData } };
 }
 
 export default scrapeData;
