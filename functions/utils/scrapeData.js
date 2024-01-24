@@ -100,8 +100,10 @@ async function scrapeData() {
     oneDayData.length === 0 &&
     fiveDayData.length === 0 &&
     tenDayData.length === 0
-  )
-    return false;
+  ) {
+    error("Scrapping data failed!");
+    return {};
+  }
   return { oneDayData, fiveDayData, tenDayData };
 }
 

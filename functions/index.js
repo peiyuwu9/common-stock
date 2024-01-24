@@ -6,40 +6,27 @@
  *
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
-
-import { onRequest } from "firebase-functions/v2/https";
 import { onSchedule } from "firebase-functions/v2/scheduler";
-import path from "path";
-import http from "http";
-import fastify from "fastify";
-import { fileURLToPath } from "url";
-import generateIndex from "./controller/generateIndex.js";
+import { initializeApp } from 'firebase/app';
+import scrapeData from "./utils/scrapeData.js";
+import renderFile from "./utils/renderFile.js";
+import { log } from "firebase-functions/logger";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-let handleRequest = null;
-
-const serverFactory = (handler, opts) => {
-  handleRequest = handler;
-  return http.createServer();
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyDkDcPq8XE6Y12WzQfQvO4EDkNNldIZ_Y8",
+  authDomain: "common-stock.firebaseapp.com",
+  projectId: "common-stock",
+  storageBucket: "common-stock.appspot.com",
+  messagingSenderId: "399529407650",
+  appId: "1:399529407650:web:d2a59c72859c1476c4d3fb",
+  measurementId: "G-GR1L6C9LZD",
 };
+initializeApp(firebaseConfig);
 
-const server = fastify({ serverFactory });
-
-server.register(import("@fastify/static"), {
-  root: path.join(__dirname, "view"),
-});
-
-server.get("/", (req, reply) => {
-  reply.sendFile("index.html");
-});
-
-// export const dailyJob = onSchedule("every day 13:00", generateIndex);
-export const dailyJob = onSchedule("* * * * *", generateIndex);
-
-export const app = onRequest((req, res) => {
-  server.ready((err) => {
-    if (err) throw err;
-    handleRequest(req, res);
-  });
+export const dailyJob = onSchedule("every day 13:00", async (event) => {
+  const data = await scrapeData();
+  if (Object.values(data).length === 0) return;
+  const isRenderComplete = await renderFile(data);
+  if (isRenderComplete) log("Scrape data successfully!");
 });

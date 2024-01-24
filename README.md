@@ -5,9 +5,10 @@ An application to scrape stock data and organize them as common stock list.
 Need data for trading purpose.
 
 ## Technologies used and why
-**HTML** and **CSS** are used to build browser content.  
-**EJS** is used to interprete html files.  
-**Javascript** is used to fetch data and serve static file.  
+**EJS** is used as html template engine.  
+**Cheerio** is used to scrape data.  
+**Firebase Storage** is used to host html file.  
+**Firebase Functions** is used to schedule jobs.  
 **Node.js** is an environment to execute javascript in terminal.
 
 ## Deploy
