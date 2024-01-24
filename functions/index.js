@@ -7,20 +7,21 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 import { onSchedule } from "firebase-functions/v2/scheduler";
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from "firebase/app";
+import "dotenv/config";
 import scrapeData from "./utils/scrapeData.js";
 import renderFile from "./utils/renderFile.js";
 import { log } from "firebase-functions/logger";
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyDkDcPq8XE6Y12WzQfQvO4EDkNNldIZ_Y8",
-  authDomain: "common-stock.firebaseapp.com",
-  projectId: "common-stock",
-  storageBucket: "common-stock.appspot.com",
-  messagingSenderId: "399529407650",
-  appId: "1:399529407650:web:d2a59c72859c1476c4d3fb",
-  measurementId: "G-GR1L6C9LZD",
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGE_SENDER_ID,
+  appId: process.env.APP_ID,
+  measurementId: process.env.MEASUREMENT_ID,
 };
 initializeApp(firebaseConfig);
 

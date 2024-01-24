@@ -3,3 +3,4 @@ functions/firebase-debug.log
 functions/ui-debug.log
 .DS_Store
 application.log
+.env
