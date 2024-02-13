@@ -12,6 +12,6 @@ Need data for trading purpose.
 **Node.js** is an environment to execute javascript in terminal.
 
 ## How to Use
-- Deploy to **Firebase Functions**
-- Go to functions folder
-- Run ```npm run deploy```
+1. Deploy to **Firebase Functions**
+2. Go to functions folder
+3. Run ```npm run deploy```
