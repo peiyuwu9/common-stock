@@ -4,7 +4,7 @@ An application to scrape stock data and organize them as common stock list.
 ## Motivation
 Need data for trading purpose.
 
-## Technologies Used and Why
+## Technologies used and why
 **EJS** is used as html template engine.  
 **Cheerio** is used to scrape data.  
 **Firebase Storage** is used to host html file.  
